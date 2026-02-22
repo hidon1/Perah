@@ -1,1880 +1,246 @@
-
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>הילת הפרח • חנות פרחים</title>
-
-  <!-- Fonts -->
+  <title>הילה כלה • זרי כלה וזרי רוסין</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Assistant:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=David+Libre:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#fdf6f1;
-      --panel:#ffffff;
-      --panel2:#fff8f3;
+      --bg:#f9f6f1;
+      --paper:#fffefb;
       --card:#ffffff;
-      --card2:#fef6f2;
-      --text:#2b1a2e;
-      --muted:#7d6485;
-      --muted2:#b09ab9;
-      --brand:#c94b78;
-      --brand2:#eb7aaa;
-      --danger:#d93b3b;
-      --warn:#d97c1a;
-      --shadow: 0 20px 60px rgba(180,80,120,.12);
-      --shadow2: 0 10px 30px rgba(180,80,120,.08);
-      --r: 18px;
-      --r2: 26px;
-      --stroke: 1px solid rgba(200,100,140,.14);
-      --stroke2: 1px solid rgba(201,75,120,.30);
+      --ink:#2f2432;
+      --muted:#7c6a84;
+      --brand:#8b5b94;
+      --brand-soft:#eddff0;
+      --gold:#b48a3b;
+      --stroke:1px solid rgba(115,90,130,.18);
+      --shadow:0 20px 45px rgba(80,40,95,.12);
+      --radius:22px;
     }
-
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: "Heebo","Assistant",system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:var(--text);
+      font-family:"Assistant",system-ui,sans-serif;
+      color:var(--ink);
       background:
-        radial-gradient(1200px 600px at 80% -5%, rgba(235,122,170,.18), transparent 55%),
-        radial-gradient(900px 700px at 5% 30%, rgba(201,75,120,.10), transparent 55%),
-        radial-gradient(900px 800px at 50% 100%, rgba(255,200,180,.15), transparent 60%),
-        linear-gradient(180deg, #fdf6f1 0%, #fef8f4 40%, #fdf5f0 100%);
-      overflow-x:hidden;
+        radial-gradient(1200px 500px at 80% -10%, rgba(139,91,148,.2), transparent 65%),
+        radial-gradient(900px 500px at 0% 25%, rgba(180,138,59,.12), transparent 60%),
+        var(--bg);
     }
-
-    a{ color:inherit; text-decoration:none; }
-    .container{
-      width:min(1180px, calc(100% - 36px));
-      margin-inline:auto;
-    }
-
-    /* Top Nav */
+    .container{width:min(1180px,calc(100% - 36px));margin-inline:auto}
     .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(20px);
-      background: linear-gradient(180deg, rgba(253,246,241,.92), rgba(253,246,241,.70));
-      border-bottom: 1px solid rgba(200,100,140,.12);
-      box-shadow: 0 4px 20px rgba(180,80,120,.06);
+      position:sticky;top:0;z-index:20;
+      backdrop-filter:blur(10px);
+      background:rgba(249,246,241,.88);
+      border-bottom:var(--stroke);
     }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      user-select:none;
-    }
-    .logo{
-      width:42px; height:42px; border-radius:14px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(235,122,170,.9), rgba(201,75,120,.3) 60%, transparent 70%),
-        radial-gradient(circle at 70% 65%, rgba(255,200,180,.8), rgba(255,160,150,.1) 60%, transparent 70%),
-        linear-gradient(135deg, rgba(201,75,120,.40), rgba(255,255,255,.20));
-      border: 1px solid rgba(201,75,120,.30);
-      box-shadow: 0 8px 24px rgba(201,75,120,.20);
-      position:relative;
-      overflow:hidden;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-60%;
-      background: conic-gradient(from 180deg, transparent, rgba(235,122,170,.5), transparent);
-      animation: spin 8s linear infinite;
-      opacity:.6;
-    }
-    @keyframes spin{ to{ transform: rotate(360deg); } }
-    @keyframes fadeInUp{
-      from{ transform: translateY(20px); opacity:0; }
-      to{ transform: translateY(0); opacity:1; }
-    }
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0;gap:10px;flex-wrap:wrap}
+    .brand{font-family:"David Libre",serif;font-size:26px;font-weight:700}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .links a{padding:10px 14px;border-radius:999px;background:#fff;border:var(--stroke);text-decoration:none;color:var(--ink);font-weight:700}
 
-    .brand h1{
-      font-size: 18px; margin:0;
-      letter-spacing:.2px;
-      font-weight:800;
-      line-height:1.05;
-      font-family: "Frank Ruhl Libre","Heebo",serif;
-    }
-    .brand small{
-      display:block;
-      color:var(--muted);
-      font-weight:500;
-      margin-top:2px;
-      font-size: 12px;
-    }
-
-    .navlinks{
-      display:flex; align-items:center; gap:12px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-    .chip{
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(200,100,140,.06);
-      border: 1px solid rgba(200,100,140,.14);
-      color: var(--muted);
-      font-weight:700;
-      font-size: 13px;
-      transition: transform .25s cubic-bezier(.34,1.56,.64,1), border-color .2s ease, background .2s ease, color .2s ease;
-      cursor:pointer;
-    }
-    .chip:hover{
-      transform: translateY(-2px);
-      border-color: rgba(201,75,120,.35);
-      background: rgba(201,75,120,.08);
-      color: var(--text);
-    }
-
-    .navright{
-      display:flex; align-items:center; gap:10px;
-    }
-    .cartBtn{
-      display:flex; align-items:center; gap:10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(201,75,120,.14), rgba(235,122,170,.08));
-      border: 1px solid rgba(201,75,120,.28);
-      box-shadow: 0 6px 20px rgba(201,75,120,.10);
-      cursor:pointer;
-      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .cartBtn:hover{ transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,75,120,.18); }
-    .cartCount{
-      min-width: 26px; height: 26px;
-      display:grid; place-items:center;
-      border-radius: 999px;
-      background: rgba(201,75,120,.18);
-      border: 1px solid rgba(201,75,120,.35);
-      font-weight:900;
-      font-size: 13px;
-      color: var(--brand);
-    }
-
-    /* Hero */
-    .hero{
-      padding: 34px 0 10px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 20px;
-      align-items:stretch;
-    }
-    @media (max-width: 920px){
-      .heroGrid{ grid-template-columns: 1fr; }
-    }
-
+    .hero{padding:32px 0}
     .heroCard{
-      border-radius: var(--r2);
-      background: linear-gradient(135deg, rgba(255,255,255,.97), rgba(255,245,240,.88));
-      border: var(--stroke);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-      padding: 32px;
-      min-height: 320px;
-      animation: fadeInUp .6s cubic-bezier(.16,1,.3,1) forwards;
+      border-radius:30px;background:linear-gradient(150deg,#fff,#f6eff9);border:var(--stroke);box-shadow:var(--shadow);
+      padding:36px;position:relative;overflow:hidden;animation:rise .7s ease;
     }
-    .heroCard:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(500px 240px at 15% 10%, rgba(235,122,170,.15), transparent 60%),
-        radial-gradient(520px 260px at 85% 30%, rgba(201,75,120,.12), transparent 60%),
-        radial-gradient(600px 300px at 40% 120%, rgba(255,200,160,.10), transparent 60%);
-      pointer-events:none;
-    }
-    .heroTitle{
-      position:relative;
-      margin:0;
-      font-size: clamp(26px, 3vw, 44px);
-      line-height:1.1;
-      letter-spacing:.2px;
-      font-weight: 900;
-      font-family: "Frank Ruhl Libre","Heebo",serif;
-    }
-    .heroTitle span{
-      background: linear-gradient(90deg, var(--brand), var(--brand2));
-      -webkit-background-clip: text;
-      background-clip:text;
-      color:transparent;
-    }
-    .heroP{
-      position:relative;
-      margin: 12px 0 18px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-      max-width: 62ch;
-    }
-    .heroActions{
-      position:relative;
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(200,100,140,.18);
-      background: rgba(200,100,140,.06);
-      color: var(--text);
-      cursor:pointer;
-      font-weight:900;
-      font-size: 14px;
-      transition: transform .25s cubic-bezier(.34,1.56,.64,1), background .2s ease, border-color .2s ease, box-shadow .2s ease;
-      user-select:none;
-      text-decoration:none;
-    }
-    .btn:hover{ transform: translateY(-2px); border-color: rgba(201,75,120,.30); background: rgba(201,75,120,.08); box-shadow: 0 8px 20px rgba(201,75,120,.12); }
-    .btn.primary{
-      background: linear-gradient(135deg, #c94b78, #d4608e);
-      border: 1px solid rgba(201,75,120,.25);
-      color: #fff;
-      box-shadow: 0 10px 28px rgba(201,75,120,.28);
-    }
-    .btn.primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 36px rgba(201,75,120,.38); filter: brightness(1.06); }
+    .heroCard:before{content:"";position:absolute;inset:auto -10% -45% auto;width:380px;height:380px;border-radius:50%;background:rgba(139,91,148,.13)}
+    @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    h1,h2,h3{font-family:"David Libre",serif;margin:0}
+    h1{font-size:clamp(30px,5vw,48px);line-height:1.15}
+    .hero p{max-width:70ch;color:var(--muted);line-height:1.8}
+    .pill{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-weight:800}
 
-    .heroAside{
-      border-radius: var(--r2);
-      background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,246,240,.90));
-      border: var(--stroke);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      position:relative;
-      padding: 20px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      min-height: 320px;
-      animation: fadeInUp .6s .12s cubic-bezier(.16,1,.3,1) both;
-    }
-    .statRow{
-      display:grid; grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .stat{
-      border-radius: 18px;
-      padding: 14px;
-      border: 1px solid rgba(200,100,140,.12);
-      background: rgba(200,100,140,.05);
-    }
-    .stat b{ display:block; font-size: 18px; color: var(--brand); }
-    .stat span{ display:block; color: var(--muted); margin-top:4px; font-size: 13px; }
-    .badge{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(201,75,120,.22);
-      background: rgba(201,75,120,.07);
-      color: var(--muted);
-      font-weight:800;
-      font-size: 13px;
-      width:max-content;
-    }
-    .pulse{
-      width:10px; height:10px; border-radius:999px;
-      background: var(--brand);
-      box-shadow: 0 0 0 0 rgba(201,75,120,.45);
-      animation: pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes pulse{
-      0%{ box-shadow: 0 0 0 0 rgba(201,75,120,.42); }
-      70%{ box-shadow: 0 0 0 12px rgba(201,75,120,0); }
-      100%{ box-shadow: 0 0 0 0 rgba(201,75,120,0); }
-    }
-    .miniList{
-      display:flex; flex-direction:column; gap:10px;
-      margin-top:6px;
-    }
-    .miniItem{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(200,100,140,.10);
-      background: rgba(200,100,140,.04);
-    }
-    .miniItem .k{ color: var(--muted); font-weight:800; font-size: 13px; }
-    .miniItem .v{ font-weight:900; color: var(--brand); }
+    section{padding:22px 0}
+    .sectionHead{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+    .sectionHead p{margin:0;color:var(--muted)}
 
-    /* Section */
-    section{ padding: 26px 0; }
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-size: 22px;
-      letter-spacing:.2px;
-      font-weight: 900;
-      font-family: "Frank Ruhl Libre","Heebo",serif;
-    }
-    .sectionHead p{
-      margin:0;
-      color:var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
+    .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    @media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.grid{grid-template-columns:1fr}}
 
-    /* Products grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-    @media (max-width: 1100px){ .grid{ grid-template-columns: repeat(3, 1fr);} }
-    @media (max-width: 820px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
-    @media (max-width: 520px){ .grid{ grid-template-columns: 1fr;} }
+    .card{background:var(--card);border:var(--stroke);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 20px rgba(80,40,95,.08);transition:.25s transform,.25s box-shadow}
+    .card:hover{transform:translateY(-4px);box-shadow:0 16px 26px rgba(80,40,95,.14)}
+    .imgWrap{height:165px;background:#f3edf5}
+    .imgWrap img{width:100%;height:100%;object-fit:cover}
+    .cardBody{padding:12px}
+    .namePrice{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+    .price{color:var(--brand);font-weight:800}
+    .desc{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.6;min-height:44px}
 
-    .card{
-      border-radius: var(--r);
-      border: var(--stroke);
-      background: #ffffff;
-      box-shadow: 0 4px 20px rgba(180,80,120,.07), 0 1px 4px rgba(180,80,120,.05);
-      overflow:hidden;
-      position:relative;
-      transform: translateY(0);
-      transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease, border-color .2s ease;
-    }
-    .card:hover{
-      transform: translateY(-6px);
-      border-color: rgba(201,75,120,.30);
-      box-shadow: 0 16px 48px rgba(180,80,120,.16), 0 4px 12px rgba(180,80,120,.08);
-    }
-    .imgWrap{
-      height: 170px;
-      position:relative;
-      overflow:hidden;
-      background: rgba(200,100,140,.05);
-    }
-    .imgWrap img{
-      width:100%; height:100%;
-      object-fit: cover;
-      transform: scale(1.02);
-      transition: transform .8s cubic-bezier(.16,1,.3,1);
-      filter: saturate(1.05) contrast(1.02);
-    }
-    .card:hover .imgWrap img{ transform: scale(1.1); }
-    .imgOverlay{
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,.30) 100%);
-    }
-    .tag{
-      position:absolute;
-      top: 12px;
-      right: 12px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(201,75,120,.20);
-      color: var(--brand);
-      font-weight: 900;
-      font-size: 12px;
-      backdrop-filter: blur(8px);
-    }
+    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:900px){.twoCol{grid-template-columns:1fr}}
+    .panel{border:var(--stroke);border-radius:var(--radius);background:var(--paper);padding:20px;box-shadow:0 8px 18px rgba(80,40,95,.06)}
+    .quotes{display:grid;gap:10px;margin-top:12px}
+    .quote{padding:12px;border-radius:16px;background:#fff;border:var(--stroke)}
+    .quote b{display:block;margin-top:6px;color:var(--brand)}
 
-    .cardBody{ padding: 14px; }
-    .nameRow{
-      display:flex; align-items:flex-start; justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-    .nameRow h3{
-      margin:0;
-      font-size: 16px;
-      font-weight: 900;
-      line-height:1.2;
-      font-family: "Frank Ruhl Libre","Heebo",serif;
-    }
-    .price{
-      font-weight: 1000;
-      font-size: 15px;
-      color: var(--brand);
-      white-space:nowrap;
-    }
-    .desc{
-      margin: 6px 0 12px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-      min-height: 40px;
-    }
-    .cardActions{
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 10px;
-    }
-    .qtyMini{
-      display:flex; align-items:center; gap: 8px;
-      color: var(--muted2);
-      font-weight:900;
-      font-size: 12px;
-    }
-    .addBtn{
-      flex: 1;
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding: 11px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(201,75,120,.28);
-      background: linear-gradient(135deg, rgba(201,75,120,.14), rgba(235,122,170,.06));
-      color: var(--brand);
-      cursor:pointer;
-      font-weight: 1000;
-      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, background .2s ease;
-      user-select:none;
-    }
-    .addBtn:hover{ transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,75,120,.20); background: linear-gradient(135deg, rgba(201,75,120,.22), rgba(235,122,170,.12)); }
+    form{display:grid;gap:10px;margin-top:10px}
+    input,textarea{width:100%;padding:12px;border-radius:14px;border:var(--stroke);font-family:inherit;background:#fff}
+    textarea{min-height:120px;resize:vertical}
+    .btn{border:0;border-radius:14px;padding:12px 14px;background:linear-gradient(135deg,var(--brand),#a370ad);color:white;font-weight:800;cursor:pointer}
+    .hint{font-size:13px;color:var(--muted)}
 
-    /* About / Testimonials */
-    .twoCol{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 900px){ .twoCol{ grid-template-columns: 1fr; } }
-
-    .panel{
-      border-radius: var(--r2);
-      border: var(--stroke);
-      background: #ffffff;
-      box-shadow: var(--shadow2);
-      padding: 20px;
-      position:relative;
-      overflow:hidden;
-    }
-    .panel h3{
-      margin:0 0 8px;
-      font-weight: 1000;
-      font-size: 17px;
-      font-family: "Frank Ruhl Libre","Heebo",serif;
-    }
-    .panel p{
-      margin:0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 14px;
-    }
-
-    .quotes{
-      display:grid; gap: 12px;
-      margin-top: 10px;
-    }
-    .quote{
-      border-radius: 18px;
-      border: 1px solid rgba(200,100,140,.12);
-      background: rgba(200,100,140,.04);
-      padding: 14px;
-      position:relative;
-      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease;
-    }
-    .quote:hover{ transform: translateY(-2px); box-shadow: 0 6px 18px rgba(180,80,120,.08); }
-    .quote:before{
-      content:"\201C";
-      position:absolute;
-      top: -10px;
-      right: 12px;
-      font-size: 44px;
-      color: rgba(201,75,120,.25);
-      font-weight: 1000;
-      line-height: 1;
-    }
-    .quote b{ display:block; margin-top: 8px; color: var(--brand); font-size: 13px; }
-
-    /* Contact banner */
-    .contactBanner{
-      border-radius: 26px;
-      border: 1px solid rgba(201,75,120,.20);
-      background:
-        radial-gradient(900px 300px at 80% 0%, rgba(235,122,170,.15), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.97), rgba(255,246,242,.90));
-      box-shadow: var(--shadow);
-      padding: 22px;
-      overflow:hidden;
-      position:relative;
-    }
-    .contactGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
-      align-items:center;
-    }
-    @media (max-width: 900px){ .contactGrid{ grid-template-columns: 1fr; } }
-
-    .contactBanner h3{
-      margin:0 0 6px;
-      font-weight: 1000;
-      font-size: 18px;
-      font-family: "Frank Ruhl Libre","Heebo",serif;
-    }
-    .contactBanner p{
-      margin:0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    form{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    @media (max-width: 620px){ form{ grid-template-columns: 1fr; } }
-    .field{
-      display:flex; flex-direction:column;
-      gap: 6px;
-    }
-    label{ font-size: 12px; color: var(--muted2); font-weight: 800; }
-    input, textarea{
-      width:100%;
-      padding: 11px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(200,100,140,.16);
-      background: rgba(255,255,255,.80);
-      color: var(--text);
-      outline:none;
-      transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
-      font-family: inherit;
-    }
-    input:focus, textarea:focus{
-      border-color: rgba(201,75,120,.40);
-      background: rgba(255,255,255,.95);
-      box-shadow: 0 0 0 3px rgba(201,75,120,.10);
-    }
-    textarea{ min-height: 92px; resize: vertical; grid-column: 1 / -1; }
-    .formActions{
-      grid-column: 1 / -1;
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center; justify-content:flex-start;
-      margin-top: 2px;
-    }
-
-    /* Footer */
-    footer{
-      padding: 18px 0 36px;
-      color: var(--muted2);
-      font-size: 12px;
-      border-top: 1px solid rgba(200,100,140,.10);
-      margin-top: 12px;
-    }
-
-    /* Cart Drawer */
-    .overlay{
-      position:fixed; inset:0;
-      background: rgba(60,20,40,.35);
-      backdrop-filter: blur(6px);
-      opacity:0; pointer-events:none;
-      transition: opacity .25s ease;
-      z-index: 80;
-    }
-    .overlay.show{ opacity:1; pointer-events:auto; }
-
-    .drawer{
-      position:fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: min(420px, 92vw);
-      background: linear-gradient(180deg, #ffffff, #fff8f4);
-      border-right: 1px solid rgba(200,100,140,.14);
-      box-shadow: var(--shadow);
-      transform: translateX(-102%);
-      transition: transform .3s cubic-bezier(.16,1,.3,1);
-      z-index: 90;
-      display:flex;
-      flex-direction:column;
-    }
-    .drawer.show{ transform: translateX(0); }
-    .drawerHead{
-      padding: 16px;
-      display:flex; align-items:center; justify-content:space-between;
-      border-bottom: 1px solid rgba(200,100,140,.12);
-      background: rgba(253,246,241,.80);
-    }
-    .drawerHead h3{ margin:0; font-size: 16px; font-weight: 1000; font-family: "Frank Ruhl Libre","Heebo",serif; }
-    .xBtn{
-      width:38px; height:38px; border-radius: 14px;
-      display:grid; place-items:center;
-      border: 1px solid rgba(200,100,140,.16);
-      background: rgba(200,100,140,.06);
-      cursor:pointer;
-      transition: transform .25s cubic-bezier(.34,1.56,.64,1), border-color .2s ease, background .2s ease;
-      user-select:none;
-    }
-    .xBtn:hover{ transform: translateY(-2px); border-color: rgba(201,75,120,.30); background: rgba(201,75,120,.10); }
-
-    .drawerBody{
-      padding: 14px 16px;
-      overflow:auto;
-      flex:1;
-    }
-    .empty{
-      border-radius: 18px;
-      border: 1px dashed rgba(200,100,140,.20);
-      padding: 18px;
-      color: var(--muted);
-      line-height: 1.7;
-      background: rgba(200,100,140,.04);
-      text-align: center;
-    }
-
-    .cartItem{
-      display:grid;
-      grid-template-columns: 58px 1fr;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 18px;
-      border: 1px solid rgba(200,100,140,.12);
-      background: rgba(200,100,140,.04);
-      margin-bottom: 10px;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .cartItem:hover{ transform: translateY(-1px); box-shadow: 0 4px 14px rgba(180,80,120,.08); }
-    .cartItem img{
-      width:58px; height:58px; border-radius: 16px;
-      object-fit:cover;
-      border: 1px solid rgba(200,100,140,.15);
-    }
-    .cartItem h4{
-      margin:0;
-      font-size: 14px;
-      font-weight: 1000;
-      line-height:1.2;
-      font-family: "Frank Ruhl Libre","Heebo",serif;
-    }
-    .cartItem .meta{
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 2px;
-    }
-    .cartControls{
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 10px;
-      margin-top: 10px;
-      flex-wrap:wrap;
-    }
-    .stepper{
-      display:flex; align-items:center; gap:8px;
-      border: 1px solid rgba(200,100,140,.14);
-      background: rgba(255,255,255,.80);
-      border-radius: 14px;
-      padding: 6px 8px;
-    }
-    .stepper button{
-      width:30px; height:30px;
-      border-radius: 12px;
-      border: 1px solid rgba(200,100,140,.16);
-      background: rgba(200,100,140,.06);
-      color: var(--brand);
-      cursor:pointer;
-      font-weight: 1000;
-      transition: transform .2s cubic-bezier(.34,1.56,.64,1), border-color .15s ease, background .15s ease;
-    }
-    .stepper button:hover{ transform: translateY(-1px) scale(1.05); border-color: rgba(201,75,120,.30); background: rgba(201,75,120,.12); }
-    .stepper .n{
-      min-width: 34px;
-      text-align:center;
-      font-weight: 1000;
-      color: var(--brand);
-    }
-    .removeBtn{
-      border-radius: 14px;
-      border: 1px solid rgba(217,59,59,.25);
-      background: rgba(217,59,59,.06);
-      color: #c03030;
-      padding: 9px 10px;
-      cursor:pointer;
-      font-weight: 1000;
-      transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .15s ease;
-    }
-    .removeBtn:hover{ transform: translateY(-1px); box-shadow: 0 4px 12px rgba(217,59,59,.14); }
-
-    .drawerFoot{
-      padding: 14px 16px;
-      border-top: 1px solid rgba(200,100,140,.12);
-      background: rgba(253,246,241,.80);
-    }
-    .totalRow{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-weight: 900;
-    }
-    .totalRow b{ color: var(--brand); font-size: 16px; }
-    .checkoutRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-
-    /* Toast */
-    .toastWrap{
-      position:fixed;
-      bottom: 18px;
-      right: 18px;
-      z-index: 120;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      pointer-events:none;
-    }
-    .toast{
-      pointer-events:none;
-      border-radius: 18px;
-      padding: 12px 16px;
-      border: 1px solid rgba(201,75,120,.22);
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 12px 36px rgba(180,80,120,.16);
-      transform: translateY(10px);
-      opacity:0;
-      animation: toastIn .25s cubic-bezier(.16,1,.3,1) forwards;
-      min-width: 220px;
-      color: var(--text);
-    }
-    @keyframes toastIn{
-      to{ transform: translateY(0); opacity:1; }
-    }
-    .toast small{ display:block; color: var(--muted); margin-top:2px; }
-
-    /* Admin hidden button */
-    .adminFab{
-      position:fixed;
-      left: 10px; /* hidden-ish */
-      bottom: 10px;
-      z-index: 130;
-      width: 46px; height: 46px;
-      border-radius: 16px;
-      border: 1px solid rgba(200,100,140,.18);
-      background: rgba(255,255,255,.75);
-      display:grid; place-items:center;
-      cursor:pointer;
-      opacity:.45;
-      transition: opacity .2s ease, transform .2s cubic-bezier(.34,1.56,.64,1), border-color .15s ease, background .15s ease;
-      user-select:none;
-    }
-    .adminFab:hover{
-      opacity:.9;
-      transform: translateY(-2px);
-      border-color: rgba(201,75,120,.30);
-      background: rgba(255,255,255,.95);
-    }
-
-    /* Modal */
-    .modalOverlay{
-      position:fixed; inset:0;
-      background: rgba(40,10,20,.40);
-      backdrop-filter: blur(10px);
-      opacity:0; pointer-events:none;
-      transition: opacity .25s ease;
-      z-index: 140;
-      display:grid;
-      place-items:center;
-      padding: 18px;
-    }
-    .modalOverlay.show{ opacity:1; pointer-events:auto; }
-    .modal{
-      width: min(720px, 96vw);
-      border-radius: 26px;
-      border: 1px solid rgba(200,100,140,.16);
-      background: linear-gradient(180deg, #ffffff, #fff8f3);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      animation: scaleIn .3s cubic-bezier(.16,1,.3,1) forwards;
-    }
-    @keyframes scaleIn{
-      from{ transform: scale(.94); opacity:0; }
-      to{ transform: scale(1); opacity:1; }
-    }
-    .modalHead{
-      padding: 14px 18px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 10px;
-      border-bottom: 1px solid rgba(200,100,140,.12);
-      background: rgba(253,246,241,.70);
-    }
-    .modalHead h3{ margin:0; font-size: 16px; font-weight: 1000; font-family: "Frank Ruhl Libre","Heebo",serif; }
-    .modalBody{ padding: 16px; }
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 680px){ .row{ grid-template-columns: 1fr; } }
-    .hint{
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.6;
-      margin-top: 8px;
-    }
-
-    .adminTabs{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-bottom: 12px;
-    }
-    .tabBtn{
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(200,100,140,.16);
-      background: rgba(200,100,140,.05);
-      color: var(--muted);
-      cursor:pointer;
-      font-weight: 1000;
-      transition: transform .2s cubic-bezier(.34,1.56,.64,1), border-color .15s ease, background .15s ease, color .15s ease;
-      user-select:none;
-    }
-    .tabBtn:hover{ transform: translateY(-1px); border-color: rgba(201,75,120,.28); background: rgba(201,75,120,.08); color: var(--text); }
-    .tabBtn.active{
-      border-color: rgba(201,75,120,.35);
-      background: rgba(201,75,120,.12);
-      color: var(--brand);
-    }
-
-    .adminList{
-      display:grid; gap: 10px;
-      margin-top: 10px;
-    }
-    .adminItem{
-      border-radius: 18px;
-      border: 1px solid rgba(200,100,140,.12);
-      background: rgba(200,100,140,.04);
-      padding: 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      flex-wrap:wrap;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .adminItem:hover{ transform: translateY(-1px); box-shadow: 0 4px 14px rgba(180,80,120,.08); }
-    .adminItem .left{
-      display:flex; align-items:center; gap: 10px;
-      min-width: 260px;
-    }
-    .adminItem img{
-      width:46px; height:46px; border-radius: 14px;
-      object-fit:cover;
-      border: 1px solid rgba(200,100,140,.16);
-    }
-    .adminItem b{ display:block; }
-    .adminItem small{ display:block; color: var(--muted); margin-top:2px; }
-    .adminItem .actions{
-      display:flex; gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .dangerBtn{
-      border-radius: 14px;
-      border: 1px solid rgba(217,59,59,.25);
-      background: rgba(217,59,59,.06);
-      color: #c03030;
-      padding: 10px 12px;
-      cursor:pointer;
-      font-weight: 1000;
-      transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .15s ease;
-      user-select:none;
-    }
-    .dangerBtn:hover{ transform: translateY(-1px); box-shadow: 0 4px 14px rgba(217,59,59,.16); }
-
-    .note{
-      border-radius: 18px;
-      border: 1px solid rgba(217,156,30,.25);
-      background: rgba(217,156,30,.06);
-      padding: 12px;
-      color: rgba(120,80,20,.92);
-      line-height: 1.7;
-      font-size: 12.5px;
-      margin-top: 12px;
-    }
-
-    /* Smooth scroll */
-    html{ scroll-behavior:smooth; }
+    footer{margin-top:24px;padding:20px 0 32px;border-top:var(--stroke);background:#f7f1f8}
+    .footerGrid{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+    @media (max-width:800px){.footerGrid{grid-template-columns:1fr}}
+    .addressList{margin:8px 0 0;padding-right:18px;color:var(--muted)}
   </style>
 </head>
-
 <body>
   <div class="topbar">
-    <div class="container">
-      <div class="nav">
-        <div class="brand" role="banner" aria-label="לוגו וכותרת">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            <h1>הילת הפרח <small>חנות פרחים מעוצבת • הזמנה מהירה</small></h1>
-          </div>
-        </div>
-
-        <div class="navlinks" aria-label="תפריט ניווט">
-          <a class="chip" href="#products">מוצרים</a>
-          <a class="chip" href="#about">עלינו</a>
-          <a class="chip" href="#reviews">תגובות</a>
-          <a class="chip" href="#contact">יצירת קשר</a>
-        </div>
-
-        <div class="navright">
-          <div class="cartBtn" id="cartBtn" title="סל קניות">
-            <span style="font-weight:1000;">🛒 סל</span>
-            <span class="cartCount" id="cartCount">0</span>
-          </div>
-        </div>
+    <div class="container nav">
+      <div class="brand">הילה כלה • זרי כלה ורוסין</div>
+      <div class="links">
+        <a href="#bride">זרי כלה</a>
+        <a href="#rusin">זרי רוסין</a>
+        <a href="#reviews">תגובות</a>
+        <a href="#contact">יצירת קשר</a>
       </div>
     </div>
   </div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <div class="heroGrid">
-        <div class="heroCard">
-          <h2 class="heroTitle">
-            פרחים שמרימים את הבית — <span>ברמה אחרת</span>
-          </h2>
-          <p class="heroP">
-            בחרו מהכרטיסיות, הוסיפו לסל, ובסוף לחצו “בקש רכישה”.
-            כרגע הבקשה נפתחת כמייל (תוכלו לשים כתובת יעד בהמשך).
-          </p>
-
-          <div class="heroActions">
-            <a class="btn primary" href="#products">למוצרים 🌸</a>
-            <button class="btn" id="openCartFromHero">פתח סל 🛒</button>
-          </div>
-        </div>
-
-        <aside class="heroAside" aria-label="מידע מהיר">
-          <div class="badge"><span class="pulse" aria-hidden="true"></span> פתוחים להזמנות • משלוחים לפי אזור</div>
-          <div class="statRow">
-            <div class="stat"><b id="statProducts">20+</b><span>מוצרים זמינים</span></div>
-            <div class="stat"><b>★★★★★</b><span>לקוחות מרוצים</span></div>
-          </div>
-
-          <div class="miniList">
-            <div class="miniItem"><span class="k">מינימום להזמנה</span><span class="v">ללא</span></div>
-            <div class="miniItem"><span class="k">תוספות</span><span class="v">כרטיס ברכה</span></div>
-            <div class="miniItem"><span class="k">מענה מהיר</span><span class="v">עד 60 דק׳</span></div>
-          </div>
-        </aside>
-      </div>
+  <header class="hero container">
+    <div class="heroCard">
+      <span class="pill">שזירה מוקפדת באווירה חרדית קלאסית</span>
+      <h1>זרי כלה וזרי רוסין<br>בגימור יוקרתי ומכובד</h1>
+      <p>
+        כבר שנים שאנחנו שוזרים באהבה ובסבלנות זרים לרגעים הכי מרגשים. כל זר נבנה בקו אלגנטי,
+        עדין ומכובד, עם דגש על יופי נקי, התאמה מלאה למעמד ושירות אישי עם לב גדול.
+      </p>
     </div>
   </header>
 
-  <!-- PRODUCTS -->
-  <section id="products">
-    <div class="container">
-      <div class="sectionHead">
-        <div>
-          <h2>כרטיסיות מכירה</h2>
-          <p>לחצו “אוסף לסל” כדי להוסיף. בסל תוכלו לשנות כמות ולהסיר.</p>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;">
-          <span class="badge" title="מחירים לדוגמה">מחיר לדוגמה: 5₪ לפרח</span>
-        </div>
-      </div>
-
-      <div class="grid" id="productsGrid" aria-label="מוצרים"></div>
+  <section id="bride" class="container">
+    <div class="sectionHead">
+      <h2>קטגוריה: זרי כלה (15 דגמים)</h2>
+      <p>טווח מחירים: 300₪–700₪ • בסדר עולה</p>
     </div>
+    <div class="grid" id="brideGrid"></div>
   </section>
 
-  <!-- ABOUT + REVIEWS -->
-  <section id="about">
-    <div class="container">
-      <div class="twoCol">
-        <div class="panel">
-          <h3>עלינו</h3>
-          <p>
-            “הילת הפרח” היא חנות פרחים עם דגש על עיצוב נקי, שירות מהיר, ותצוגה נוחה.
-            כל פרח מגיע עם תקציר קצר, תמונה, מחיר, וסל קניות שמלווה אתכם לאורך כל האתר.
-          </p>
-          <div class="note">
-            הערה טכנית: ניהול “עם סיסמה” בקובץ HTML אחד הוא פתרון בסיסי בלבד (סיסמה בצד לקוח).
-            אם תרצה אבטחה אמיתית/הגבלת גישה — צריך צד שרת (Netlify Functions וכד’).
-          </div>
-        </div>
+  <section id="rusin" class="container">
+    <div class="sectionHead">
+      <h2>קטגוריה: זרי רוסין (10 דגמים)</h2>
+      <p>טווח מחירים: 600₪–1200₪ • קפיצות של כ־50₪–100₪</p>
+    </div>
+    <div class="grid" id="rusinGrid"></div>
+  </section>
 
-        <div class="panel" id="reviews">
-          <h3>תגובות של אנשים</h3>
-          <div class="quotes">
-            <div class="quote">
-              “הפרחים הגיעו טריים, מסודרים, והכל נראה יוקרתי.”
-              <b>— רותי, ראשון לציון</b>
-            </div>
-            <div class="quote">
-              “ממש קל לבחור ולהוסיף לסל. השירות היה מהיר.”
-              <b>— דניאל, תל אביב</b>
-            </div>
-            <div class="quote">
-              “אהבתי את העיצוב של האתר — מרגיש מקצועי.”
-              <b>— יואב, חולון</b>
-            </div>
-          </div>
-        </div>
+  <section id="reviews" class="container twoCol">
+    <div class="panel">
+      <h3>מי אנחנו</h3>
+      <p>סטודיו לשזירה המתמחה בזרי כלה וזרי רוסין. אנו משלבים קו מסורתי עם טאץ' מודרני, ושומרים על מראה צנוע, עשיר ומכבד לכל אירוע.</p>
+      <p class="hint">התאמה אישית זמינה לפי סגנון לבוש, שעת האירוע וגוון הפרחים המועדף.</p>
+    </div>
+    <div class="panel">
+      <h3>תגובות של אנשים</h3>
+      <div class="quotes">
+        <div class="quote">"הזר היה מדויק, עדין ומכובד – קיבלתי המון מחמאות בערב הרוסין."<b>— שירה, בני ברק</b></div>
+        <div class="quote">"שירות מיוחד וסבלני, והשזירה ברמה גבוהה מאוד."<b>— אביטל, רחובות</b></div>
+        <div class="quote">"הזר לכלה נראה יוקרתי ונשמר מושלם לאורך כל הצילומים."<b>— משפחת כהן, ראשון לציון</b></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="contactBanner">
-        <div class="contactGrid">
-          <div>
-            <h3>טופס יצירת קשר</h3>
-            <p>
-              השאירו פרטים ונחזור אליכם. (הטופס מדמה שליחה; אפשר לחבר בהמשך למייל/שרת/Netlify Forms).
-            </p>
-          </div>
-
-          <div>
-            <form id="contactForm">
-              <div class="field">
-                <label for="fullName">שם מלא</label>
-                <input id="fullName" name="fullName" placeholder="לדוגמה: ישראל ישראלי" required />
-              </div>
-              <div class="field">
-                <label for="phone">טלפון</label>
-                <input id="phone" name="phone" placeholder="לדוגמה: 050-0000000" />
-              </div>
-              <div class="field" style="grid-column: 1 / -1;">
-                <label for="message">הודעה</label>
-                <textarea id="message" name="message" placeholder="מה תרצה להזמין?"></textarea>
-              </div>
-
-              <div class="formActions">
-                <button class="btn primary" type="submit">שלח פנייה ✉️</button>
-                <button class="btn" type="button" id="scrollTopBtn">חזרה למעלה ⬆️</button>
-              </div>
-            </form>
-            <div class="hint" id="contactHint" style="display:none;">נשלח בהצלחה (דמו). נחזור אליך בהקדם.</div>
-          </div>
-        </div>
-      </div>
+  <section id="contact" class="container">
+    <div class="panel">
+      <h3>טופס יצירת קשר</h3>
+      <p class="hint">הטופס מוכן לחיבור ל-Google Apps Script. בהמשך תדביקו את כתובת הסקריפט בשדה המתאים בקוד.</p>
+      <form id="contactForm">
+        <input name="name" placeholder="שם מלא" required>
+        <input name="subject" placeholder="הכנס הודעה (נושא)">
+        <textarea name="message" placeholder="ההודעה שלך" required></textarea>
+        <button class="btn" type="submit">שלח הודעה</button>
+      </form>
+      <p id="formStatus" class="hint"></p>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      © <span id="year"></span> הילת הפרח • כל הזכויות שמורות
+    <div class="container footerGrid">
+      <div>
+        <h3>כתובתנו</h3>
+        <ul class="addressList">
+          <li>ראשון לציון</li>
+          <li>בני ברק</li>
+          <li>רחובות</li>
+        </ul>
+      </div>
+      <div>
+        <h3>פרטי קשר</h3>
+        <p class="hint">טלפון: <a href="tel:0534101455">053-410-1455</a><br>מייל: <a href="mailto:33HILA33@gmail.com">33HILA33@gmail.com</a></p>
+      </div>
     </div>
   </footer>
 
-  <!-- CART OVERLAY + DRAWER -->
-  <div class="overlay" id="cartOverlay" aria-hidden="true"></div>
-  <aside class="drawer" id="cartDrawer" aria-label="סל קניות">
-    <div class="drawerHead">
-      <h3>🛒 סל קניות</h3>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <div class="chip" id="clearCartBtn" title="נקה סל">נקה</div>
-        <div class="xBtn" id="closeCartBtn" aria-label="סגור">✕</div>
-      </div>
-    </div>
-    <div class="drawerBody" id="cartItems"></div>
-    <div class="drawerFoot">
-      <div class="totalRow">
-        <span>סה״כ לתשלום</span>
-        <b id="cartTotal">0₪</b>
-      </div>
-      <div class="checkoutRow">
-        <button class="btn primary" id="checkoutBtn">בקש רכישה (מייל)</button>
-        <button class="btn" id="continueBtn">המשך קנייה</button>
-      </div>
-      <div class="hint" style="margin-top:10px;">
-        אפשר לשנות כמות לכל פריט. “בקש רכישה” יפתח טיוטת מייל עם פרטי ההזמנה.
-      </div>
-    </div>
-  </aside>
-
-  <!-- Toasts -->
-  <div class="toastWrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
-
-  <!-- Hidden-ish Admin Button -->
-  <div class="adminFab" id="adminFab" title="ניהול (מוסתר)">⚙️</div>
-
-  <!-- Admin Modal -->
-  <div class="modalOverlay" id="adminOverlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="ניהול מוצרים">
-      <div class="modalHead">
-        <h3 id="adminTitle">ניהול</h3>
-        <div class="xBtn" id="closeAdminBtn" aria-label="סגור">✕</div>
-      </div>
-      <div class="modalBody">
-        <!-- Login view -->
-        <div id="adminLoginView">
-          <div class="row">
-            <div class="field" style="grid-column: 1 / -1;">
-              <label for="adminPass">סיסמה</label>
-              <input id="adminPass" type="password" inputmode="numeric" placeholder="הכנס סיסמה" />
-            </div>
-          </div>
-          <div class="formActions" style="margin-top:10px;">
-            <button class="btn primary" id="adminLoginBtn">כניסה לניהול</button>
-            <button class="btn" id="adminCancelBtn">ביטול</button>
-          </div>
-          <div class="hint">סיסמה לדוגמה (כפי שביקשת): 124578</div>
-        </div>
-
-        <!-- Panel view -->
-        <div id="adminPanelView" style="display:none;">
-          <div class="adminTabs">
-            <button class="tabBtn active" data-tab="add">הוספה/עריכה</button>
-            <button class="tabBtn" data-tab="list">רשימת מוצרים</button>
-            <button class="tabBtn" data-tab="settings">הגדרות</button>
-          </div>
-
-          <!-- Add/Edit -->
-          <div id="tabAdd">
-            <div class="row">
-              <div class="field">
-                <label for="pName">שם המוצר</label>
-                <input id="pName" placeholder="לדוגמה: ליזיאנטוס" />
-              </div>
-              <div class="field">
-                <label for="pPrice">מחיר (₪)</label>
-                <input id="pPrice" type="number" min="0" step="1" placeholder="5" />
-              </div>
-
-              <div class="field" style="grid-column: 1 / -1;">
-                <label for="pDesc">תקציר קצר</label>
-                <input id="pDesc" placeholder="תקציר קצר ונעים על הפרח..." />
-              </div>
-
-              <div class="field" style="grid-column: 1 / -1;">
-                <label for="pImg">קישור לתמונה</label>
-                <input id="pImg" placeholder="https://..." />
-              </div>
-
-              <div class="field">
-                <label for="pTag">תגית (אופציונלי)</label>
-                <input id="pTag" placeholder="חדש / מומלץ / עונתי..." />
-              </div>
-              <div class="field">
-                <label for="pSku">מזהה (SKU) (אופציונלי)</label>
-                <input id="pSku" placeholder="נוצר אוטומטית אם ריק" />
-              </div>
-            </div>
-
-            <div class="formActions" style="margin-top:10px;">
-              <button class="btn primary" id="saveProductBtn">שמור מוצר</button>
-              <button class="btn" id="resetFormBtn">נקה טופס</button>
-              <button class="dangerBtn" id="logoutBtn">יציאה</button>
-            </div>
-
-            <div class="hint" id="editHint" style="display:none;"></div>
-          </div>
-
-          <!-- List -->
-          <div id="tabList" style="display:none;">
-            <div class="hint">לחץ “עריכה” כדי להכניס מוצר לטופס, או “מחיקה”.</div>
-            <div class="adminList" id="adminList"></div>
-          </div>
-
-          <!-- Settings -->
-          <div id="tabSettings" style="display:none;">
-            <div class="row">
-              <div class="field" style="grid-column: 1 / -1;">
-                <label for="mailtoTarget">כתובת מייל להזמנות (יעד)</label>
-                <input id="mailtoTarget" placeholder="example@email.com" />
-              </div>
-            </div>
-            <div class="formActions" style="margin-top:10px;">
-              <button class="btn primary" id="saveSettingsBtn">שמור</button>
-              <button class="dangerBtn" id="resetAllBtn">איפוס מלא (מוצרים+סל)</button>
-            </div>
-            <div class="hint">
-              אם תשאיר ריק, “בקש רכישה” יפתח מייל ללא יעד (תוכל לבחור יעד ידנית במייל).
-            </div>
-          </div>
-
-          <div class="note">
-            ניהול בקובץ אחד נשמר ב-localStorage של הדפדפן (מוצרים, סל, והגדרות).
-            אם תפתח בדפדפן/מחשב אחר — זה לא יעבור אוטומטית.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
-    /***********************
-     * Data + Storage
-     ***********************/
-    const LS_KEYS = {
-      products: "hp_products_v1",
-      cart: "hp_cart_v1",
-      settings: "hp_settings_v1",
-      admin: "hp_admin_authed_v1"
-    };
+    const bridePrices = [300,330,360,390,420,450,480,510,540,570,600,630,660,680,700];
+    const rusinPrices = [600,650,700,750,800,900,1000,1050,1150,1200];
 
-    const DEFAULT_SETTINGS = {
-      mailtoTarget: "" // put later
-    };
+    const brideGrid = document.getElementById('brideGrid');
+    const rusinGrid = document.getElementById('rusinGrid');
 
-    // 20 products (includes your example: ליזיאנטוס 5₪)
-    const DEFAULT_PRODUCTS = [
-      {
-        sku: "LIS-001",
-        name: "ליזיאנטוס",
-        price: 5,
-        tag: "מומלץ",
-        desc: "פרח אלגנטי עם נוכחות עדינה. מתאים לכל זר.",
-        img: unsplash("eustoma,flower")
-      },
-      { sku:"ROS-002", name:"ורד קלאסי", price:7, tag:"קלאסי", desc:"ורד עשיר וריחני. בחירה בטוחה לכל אירוע.", img: unsplash("rose,flower") },
-      { sku:"TUL-003", name:"טוליפ", price:6, tag:"עונתי", desc:"קווים נקיים, צבעים חזקים, וסטייל אירופאי.", img: unsplash("tulip,flower") },
-      { sku:"SUN-004", name:"חמנייה", price:8, tag:"שמח", desc:"מכניסה אור לבית. נראית נפלא באגרטל גבוה.", img: unsplash("sunflower,flower") },
-      { sku:"LIL-005", name:"ליליום", price:9, tag:"יוקרתי", desc:"פריחה מרשימה וריח עדין. נותן אפקט 'וואו'.", img: unsplash("lily,flower") },
-      { sku:"GER-006", name:"גרברה", price:5, tag:"צבעוני", desc:"פרח שמח במגוון צבעים. מושלם לזר צעיר.", img: unsplash("gerbera,flower") },
-      { sku:"CAR-007", name:"ציפורן", price:4, tag:"עמיד", desc:"מחזיק יפה לאורך זמן. מתאים למילוי זר.", img: unsplash("carnation,flower") },
-      { sku:"CHR-008", name:"חרצית", price:4, tag:"קלאסי", desc:"מראה מלא ועשיר. נהדרת לשילובים.", img: unsplash("chrysanthemum,flower") },
-      { sku:"ALY-009", name:"אליסום", price:3, tag:"עדין", desc:"עננים קטנים של פריחה. מוסיף רכות לזר.", img: unsplash("white,small,flowers") },
-      { sku:"IRIS-010", name:"איריס", price:7, tag:"ייחודי", desc:"מבנה מיוחד וקווים חדים. למי שאוהב שונה.", img: unsplash("iris,flower") },
-      { sku:"PEO-011", name:"אדמונית", price:12, tag:"יוקרתי", desc:"נפח עשיר ומראה רומנטי. מלכה של זרים.", img: unsplash("peony,flower") },
-      { sku:"ORC-012", name:"סחלב", price:15, tag:"פרימיום", desc:"אלגנטי ומדויק. מתאים גם כמתנה יוקרתית.", img: unsplash("orchid,flower") },
-      { sku:"DAN-013", name:"דלפיניום", price:8, tag:"גבוה", desc:"עמודי פריחה מרשימים. נותן גובה ודרמה.", img: unsplash("delphinium,flower") },
-      { sku:"LAV-014", name:"לבנדר", price:6, tag:"ריחני", desc:"ריח טבעי ונעים. מוסיף אווירה מרגיעה.", img: unsplash("lavender,flowers") },
-      { sku:"EUC-015", name:"אקליפטוס (ענפים)", price:5, tag:"ירוק", desc:"מוסיף ירוק נקי וריח מרענן לזר.", img: unsplash("eucalyptus,leaves") },
-      { sku:"BAB-016", name:"גיבסנית (בייבי)", price:4, tag:"עדין", desc:"נקודות פריחה קטנות. מושלם לשילוב.", img: unsplash("baby's breath,flower") },
-      { sku:"ANE-017", name:"כלנית", price:6, tag:"עונתי", desc:"מראה טבעי ונועז. צבעים שמושכים מבט.", img: unsplash("anemone,flower") },
-      { sku:"RAN-018", name:"נורית", price:6, tag:"רומנטי", desc:"עלי כותרת צפופים. נראית מדהים בזר קטן.", img: unsplash("ranunculus,flower") },
-      { sku:"HYD-019", name:"הידראנג׳ה", price:14, tag:"מלא", desc:"כדור פריחה גדול ומרשים. ממלא כל זר.", img: unsplash("hydrangea,flower") },
-      { sku:"FRE-020", name:"פרזיה", price:5, tag:"ריחני", desc:"ריח עדין ומתוק. פרח קטן עם הרבה אופי.", img: unsplash("freesia,flower") },
-    ];
-
-    function unsplash(query){
-      // Unsplash Source (works without API key; image may vary)
-      // Add sig to reduce caching sameness.
-      const sig = Math.floor(Math.random()*100000);
-      return `https://source.unsplash.com/featured/800x600?${encodeURIComponent(query)}&sig=${sig}`;
-    }
-
-    function loadJSON(key, fallback){
-      try{
-        const raw = localStorage.getItem(key);
-        if(!raw) return fallback;
-        return JSON.parse(raw);
-      }catch(e){
-        return fallback;
-      }
-    }
-    function saveJSON(key, value){
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-
-    let settings = loadJSON(LS_KEYS.settings, DEFAULT_SETTINGS);
-    let products = loadJSON(LS_KEYS.products, DEFAULT_PRODUCTS);
-    let cart = loadJSON(LS_KEYS.cart, {}); // sku -> qty
-    let adminAuthed = loadJSON(LS_KEYS.admin, false);
-
-    /***********************
-     * Elements
-     ***********************/
-    const elGrid = document.getElementById("productsGrid");
-    const elCartCount = document.getElementById("cartCount");
-    const elCartOverlay = document.getElementById("cartOverlay");
-    const elCartDrawer = document.getElementById("cartDrawer");
-    const elCartItems = document.getElementById("cartItems");
-    const elCartTotal = document.getElementById("cartTotal");
-
-    const btnCart = document.getElementById("cartBtn");
-    const btnOpenCartFromHero = document.getElementById("openCartFromHero");
-    const btnCloseCart = document.getElementById("closeCartBtn");
-    const btnContinue = document.getElementById("continueBtn");
-    const btnCheckout = document.getElementById("checkoutBtn");
-    const btnClearCart = document.getElementById("clearCartBtn");
-
-    const toastWrap = document.getElementById("toastWrap");
-
-    const adminFab = document.getElementById("adminFab");
-    const adminOverlay = document.getElementById("adminOverlay");
-    const closeAdminBtn = document.getElementById("closeAdminBtn");
-
-    const adminLoginView = document.getElementById("adminLoginView");
-    const adminPanelView = document.getElementById("adminPanelView");
-    const adminPass = document.getElementById("adminPass");
-    const adminLoginBtn = document.getElementById("adminLoginBtn");
-    const adminCancelBtn = document.getElementById("adminCancelBtn");
-
-    const tabButtons = Array.from(document.querySelectorAll(".tabBtn"));
-    const tabAdd = document.getElementById("tabAdd");
-    const tabList = document.getElementById("tabList");
-    const tabSettings = document.getElementById("tabSettings");
-
-    const pName = document.getElementById("pName");
-    const pPrice = document.getElementById("pPrice");
-    const pDesc = document.getElementById("pDesc");
-    const pImg = document.getElementById("pImg");
-    const pTag = document.getElementById("pTag");
-    const pSku = document.getElementById("pSku");
-    const saveProductBtn = document.getElementById("saveProductBtn");
-    const resetFormBtn = document.getElementById("resetFormBtn");
-    const editHint = document.getElementById("editHint");
-    const adminList = document.getElementById("adminList");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    const mailtoTarget = document.getElementById("mailtoTarget");
-    const saveSettingsBtn = document.getElementById("saveSettingsBtn");
-    const resetAllBtn = document.getElementById("resetAllBtn");
-
-    const statProducts = document.getElementById("statProducts");
-
-    /***********************
-     * Render
-     ***********************/
-    function formatILS(n){
-      const x = Math.round(Number(n)||0);
-      return `${x}₪`;
-    }
-    function cartCount(){
-      return Object.values(cart).reduce((a,b)=>a+(Number(b)||0),0);
-    }
-    function cartTotal(){
-      let sum = 0;
-      for(const [sku, qty] of Object.entries(cart)){
-        const p = products.find(x=>x.sku===sku);
-        if(!p) continue;
-        sum += (Number(p.price)||0) * (Number(qty)||0);
-      }
-      return sum;
-    }
-
-    function renderProducts(){
-      elGrid.innerHTML = "";
-      statProducts.textContent = `${products.length}+`;
-
-      for(const p of products){
-        const card = document.createElement("div");
-        card.className = "card";
+    function renderCards(target, category, prices, imgPrefix = '') {
+      prices.forEach((price, index) => {
+        const number = index + 1;
+        const imageName = imgPrefix ? `${imgPrefix}${number}.png` : `${number}.png`;
+        const card = document.createElement('article');
+        card.className = 'card';
         card.innerHTML = `
           <div class="imgWrap">
-            <img src="${escapeAttr(p.img)}" alt="${escapeAttr(p.name)}" loading="lazy">
-            <div class="imgOverlay"></div>
-            <div class="tag">${escapeHTML(p.tag || "מוצר")}</div>
+            <img src="${imageName}" alt="${category} ${number}" onerror="this.src='https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=900&q=80';">
           </div>
           <div class="cardBody">
-            <div class="nameRow">
-              <h3>${escapeHTML(p.name)}</h3>
-              <div class="price">${formatILS(p.price)}</div>
+            <div class="namePrice">
+              <h3>${category} ${number}</h3>
+              <div class="price">${price}₪</div>
             </div>
-            <div class="desc">${escapeHTML(p.desc || "")}</div>
-            <div class="cardActions">
-              <div class="qtyMini" title="בכל לחיצה מתווסף 1 לסל">+1 לכל לחיצה</div>
-              <button class="addBtn" data-sku="${escapeAttr(p.sku)}">אוסף לסל 🧺</button>
-            </div>
+            <p class="desc">שזירה מוקפדת, מראה עדין ומכובד, התאמה מושלמת לאירוע עם גימור עשיר ואלגנטי.</p>
           </div>
         `;
-        elGrid.appendChild(card);
+        target.appendChild(card);
+      });
+    }
+
+    renderCards(brideGrid, 'זר כלה', bridePrices, 'כלה-');
+    renderCards(rusinGrid, 'זר רוסין', rusinPrices);
+
+    // Google Apps Script endpoint (להחלפה בקישור האמיתי שתקבלו)
+    const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    const form = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.toEmail = '33HILA33@gmail.com';
+
+      if (!GOOGLE_SCRIPT_URL.startsWith('http')) {
+        formStatus.textContent = 'הטופס מוכן, נשאר רק להדביק את קישור ה-Google Apps Script בקוד.';
+        return;
       }
 
-      // bind buttons
-      elGrid.querySelectorAll(".addBtn").forEach(btn=>{
-        btn.addEventListener("click", ()=>{
-          const sku = btn.getAttribute("data-sku");
-          addToCart(sku, 1);
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
         });
-      });
-    }
-
-    function renderCart(){
-      const items = Object.entries(cart)
-        .map(([sku, qty])=>{
-          const p = products.find(x=>x.sku===sku);
-          if(!p) return null;
-          return { p, qty: Number(qty)||0 };
-        })
-        .filter(Boolean);
-
-      elCartCount.textContent = String(cartCount());
-      elCartTotal.textContent = formatILS(cartTotal());
-
-      if(items.length === 0){
-        elCartItems.innerHTML = `
-          <div class="empty">
-            הסל ריק.<br/>
-            הוסף מוצרים מהכרטיסיות ואז חזור לכאן כדי לבצע הזמנה.
-          </div>
-        `;
-        return;
-      }
-
-      elCartItems.innerHTML = "";
-      for(const it of items){
-        const row = document.createElement("div");
-        row.className = "cartItem";
-        row.innerHTML = `
-          <img src="${escapeAttr(it.p.img)}" alt="${escapeAttr(it.p.name)}" loading="lazy">
-          <div>
-            <h4>${escapeHTML(it.p.name)}</h4>
-            <div class="meta">${escapeHTML(it.p.tag || "מוצר")} • ${formatILS(it.p.price)} ליח׳</div>
-            <div class="cartControls">
-              <div class="stepper" aria-label="כמות">
-                <button data-act="dec" data-sku="${escapeAttr(it.p.sku)}" aria-label="הפחת">−</button>
-                <div class="n" id="qty_${escapeAttr(it.p.sku)}">${it.qty}</div>
-                <button data-act="inc" data-sku="${escapeAttr(it.p.sku)}" aria-label="הוסף">+</button>
-              </div>
-              <button class="removeBtn" data-act="rm" data-sku="${escapeAttr(it.p.sku)}">הסר</button>
-            </div>
-          </div>
-        `;
-        elCartItems.appendChild(row);
-      }
-
-      elCartItems.querySelectorAll("button[data-act]").forEach(b=>{
-        b.addEventListener("click", ()=>{
-          const sku = b.getAttribute("data-sku");
-          const act = b.getAttribute("data-act");
-          if(act==="inc") addToCart(sku, 1);
-          if(act==="dec") addToCart(sku, -1);
-          if(act==="rm") removeFromCart(sku);
-        });
-      });
-    }
-
-    /***********************
-     * Cart Actions
-     ***********************/
-    function addToCart(sku, delta){
-      const p = products.find(x=>x.sku===sku);
-      if(!p) return;
-
-      const cur = Number(cart[sku] || 0);
-      const next = cur + Number(delta||0);
-
-      if(next <= 0){
-        delete cart[sku];
-      }else{
-        cart[sku] = next;
-      }
-
-      saveJSON(LS_KEYS.cart, cart);
-      renderCart();
-      toast(`נוסף לסל`, `${p.name} • ${formatILS(p.price)}`);
-    }
-
-    function removeFromCart(sku){
-      const p = products.find(x=>x.sku===sku);
-      delete cart[sku];
-      saveJSON(LS_KEYS.cart, cart);
-      renderCart();
-      if(p) toast(`הוסר מהסל`, p.name);
-    }
-
-    function clearCart(){
-      cart = {};
-      saveJSON(LS_KEYS.cart, cart);
-      renderCart();
-      toast("הסל נוקה", "אפשר להתחיל מחדש");
-    }
-
-    /***********************
-     * Drawer open/close
-     ***********************/
-    function openCart(){
-      elCartOverlay.classList.add("show");
-      elCartDrawer.classList.add("show");
-      elCartOverlay.setAttribute("aria-hidden","false");
-    }
-    function closeCart(){
-      elCartOverlay.classList.remove("show");
-      elCartDrawer.classList.remove("show");
-      elCartOverlay.setAttribute("aria-hidden","true");
-    }
-
-    btnCart.addEventListener("click", openCart);
-    btnOpenCartFromHero.addEventListener("click", openCart);
-    btnCloseCart.addEventListener("click", closeCart);
-    btnContinue.addEventListener("click", closeCart);
-    elCartOverlay.addEventListener("click", closeCart);
-
-    btnClearCart.addEventListener("click", clearCart);
-
-    btnCheckout.addEventListener("click", ()=>{
-      const items = Object.entries(cart)
-        .map(([sku, qty])=>{
-          const p = products.find(x=>x.sku===sku);
-          if(!p) return null;
-          return { p, qty: Number(qty)||0 };
-        })
-        .filter(Boolean);
-
-      if(items.length===0){
-        toast("הסל ריק", "הוסף מוצרים ואז נסה שוב");
-        return;
-      }
-
-      const lines = items.map(it=>{
-        const lineTotal = (Number(it.p.price)||0) * (Number(it.qty)||0);
-        return `- ${it.p.name} | כמות: ${it.qty} | מחיר יחידה: ${it.p.price}₪ | סה\"כ: ${lineTotal}₪`;
-      });
-
-      const total = cartTotal();
-      const subject = encodeURIComponent("בקשת רכישה - הילת הפרח");
-      const body = encodeURIComponent(
-        `שלום,\n\nאשמח לבצע הזמנה:\n\n${lines.join("\n")}\n\nסה\"כ לתשלום: ${total}₪\n\nשם: \nטלפון: \nכתובת: \nהערות: \n`
-      );
-
-      const to = (settings.mailtoTarget || "").trim();
-      const href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
-      window.location.href = href;
-    });
-
-    /***********************
-     * Contact form (demo)
-     ***********************/
-    const contactForm = document.getElementById("contactForm");
-    const contactHint = document.getElementById("contactHint");
-    document.getElementById("scrollTopBtn").addEventListener("click", ()=>{
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    contactForm.addEventListener("submit", (e)=>{
-      e.preventDefault();
-      contactHint.style.display = "block";
-      toast("נשלח (דמו)", "נחזור אליך בהקדם");
-      contactForm.reset();
-      setTimeout(()=> contactHint.style.display="none", 3500);
-    });
-
-    /***********************
-     * Admin modal
-     ***********************/
-    let editingSku = null;
-
-    function openAdmin(){
-      adminOverlay.classList.add("show");
-      adminOverlay.setAttribute("aria-hidden","false");
-      // view based on auth
-      if(adminAuthed){
-        showAdminPanel();
-      }else{
-        showAdminLogin();
-      }
-    }
-    function closeAdmin(){
-      adminOverlay.classList.remove("show");
-      adminOverlay.setAttribute("aria-hidden","true");
-      adminPass.value = "";
-      hideEditHint();
-    }
-
-    adminFab.addEventListener("click", openAdmin);
-    closeAdminBtn.addEventListener("click", closeAdmin);
-    adminCancelBtn.addEventListener("click", closeAdmin);
-    adminOverlay.addEventListener("click", (e)=>{
-      if(e.target === adminOverlay) closeAdmin();
-    });
-
-    function showAdminLogin(){
-      adminLoginView.style.display = "block";
-      adminPanelView.style.display = "none";
-      setTab("add");
-      setTimeout(()=>adminPass.focus(), 60);
-    }
-    function showAdminPanel(){
-      adminLoginView.style.display = "none";
-      adminPanelView.style.display = "block";
-      mailtoTarget.value = settings.mailtoTarget || "";
-      renderAdminList();
-      setTab("add");
-    }
-
-    adminLoginBtn.addEventListener("click", ()=>{
-      const pass = (adminPass.value || "").trim();
-      if(pass === "124578"){
-        adminAuthed = true;
-        saveJSON(LS_KEYS.admin, true);
-        toast("כניסה לניהול", "הצלחת להתחבר");
-        showAdminPanel();
-      }else{
-        toast("סיסמה שגויה", "נסה שוב");
-        adminPass.focus();
-        adminPass.select();
+        formStatus.textContent = 'ההודעה נשלחה בהצלחה. נחזור אליכם בהקדם.';
+        form.reset();
+      } catch {
+        formStatus.textContent = 'אירעה שגיאה בשליחה. נסו שוב או צרו קשר בטלפון.';
       }
     });
-
-    logoutBtn.addEventListener("click", ()=>{
-      adminAuthed = false;
-      saveJSON(LS_KEYS.admin, false);
-      toast("יצאת מהניהול", "התחברות נדרשת שוב");
-      showAdminLogin();
-    });
-
-    tabButtons.forEach(btn=>{
-      btn.addEventListener("click", ()=> setTab(btn.getAttribute("data-tab")));
-    });
-
-    function setTab(tab){
-      tabButtons.forEach(b=> b.classList.toggle("active", b.getAttribute("data-tab")===tab));
-      tabAdd.style.display = tab==="add" ? "block" : "none";
-      tabList.style.display = tab==="list" ? "block" : "none";
-      tabSettings.style.display = tab==="settings" ? "block" : "none";
-    }
-
-    function resetForm(){
-      editingSku = null;
-      pName.value = "";
-      pPrice.value = "";
-      pDesc.value = "";
-      pImg.value = "";
-      pTag.value = "";
-      pSku.value = "";
-      hideEditHint();
-    }
-    resetFormBtn.addEventListener("click", resetForm);
-
-    function showEditHint(text){
-      editHint.textContent = text;
-      editHint.style.display = "block";
-    }
-    function hideEditHint(){
-      editHint.style.display = "none";
-      editHint.textContent = "";
-    }
-
-    saveProductBtn.addEventListener("click", ()=>{
-      const name = (pName.value||"").trim();
-      const price = Number((pPrice.value||"").trim());
-      const desc = (pDesc.value||"").trim();
-      const img = (pImg.value||"").trim();
-      const tag = (pTag.value||"").trim();
-      const skuInput = (pSku.value||"").trim();
-
-      if(!name){
-        toast("חסר שם מוצר", "מלא שם ואז שמור");
-        return;
-      }
-      if(!Number.isFinite(price) || price < 0){
-        toast("מחיר לא תקין", "הכנס מספר (לדוגמה 5)");
-        return;
-      }
-      if(!img){
-        toast("חסרה תמונה", "שים קישור לתמונה (URL)");
-        return;
-      }
-
-      if(editingSku){
-        // update
-        const idx = products.findIndex(x=>x.sku===editingSku);
-        if(idx === -1){
-          toast("לא נמצא", "המוצר לעריכה לא קיים");
-          resetForm();
-          return;
-        }
-        const newSku = skuInput ? skuInput : editingSku;
-        // handle sku change collision
-        if(newSku !== editingSku && products.some(x=>x.sku===newSku)){
-          toast("SKU כבר קיים", "בחר מזהה אחר");
-          return;
-        }
-        // update cart mapping if sku changed
-        if(newSku !== editingSku && cart[editingSku]){
-          cart[newSku] = cart[editingSku];
-          delete cart[editingSku];
-          saveJSON(LS_KEYS.cart, cart);
-        }
-
-        products[idx] = {
-          ...products[idx],
-          sku: newSku,
-          name, price, desc, img, tag
-        };
-        editingSku = newSku;
-
-        saveJSON(LS_KEYS.products, products);
-        renderProducts();
-        renderCart();
-        renderAdminList();
-        showEditHint(`נערך בהצלחה: ${name} (${newSku})`);
-        toast("נשמר", "המוצר עודכן");
-        return;
-      }
-
-      // create new
-      const sku = skuInput ? skuInput : makeSku(name);
-      if(products.some(x=>x.sku===sku)){
-        toast("SKU כבר קיים", "שנה מזהה או שם");
-        return;
-      }
-      const item = { sku, name, price, desc, img, tag };
-      products.unshift(item);
-
-      saveJSON(LS_KEYS.products, products);
-      renderProducts();
-      renderAdminList();
-      showEditHint(`נוסף בהצלחה: ${name} (${sku})`);
-      toast("נוסף מוצר", name);
-      resetForm();
-    });
-
-    function makeSku(name){
-      const base = name
-        .replace(/\s+/g,"-")
-        .replace(/[^\u0590-\u05FFa-zA-Z0-9\-]/g,"")
-        .slice(0,10)
-        .toUpperCase() || "PRD";
-      const rnd = Math.floor(100 + Math.random()*900);
-      return `${base}-${rnd}`;
-    }
-
-    function renderAdminList(){
-      adminList.innerHTML = "";
-      for(const p of products){
-        const row = document.createElement("div");
-        row.className = "adminItem";
-        row.innerHTML = `
-          <div class="left">
-            <img src="${escapeAttr(p.img)}" alt="${escapeAttr(p.name)}" loading="lazy" />
-            <div>
-              <b>${escapeHTML(p.name)} <span style="color:rgba(234,247,242,.7); font-weight:900;">(${escapeHTML(p.sku)})</span></b>
-              <small>${escapeHTML(p.tag||"")} • ${formatILS(p.price)}</small>
-            </div>
-          </div>
-          <div class="actions">
-            <button class="btn" data-act="edit" data-sku="${escapeAttr(p.sku)}">עריכה</button>
-            <button class="dangerBtn" data-act="del" data-sku="${escapeAttr(p.sku)}">מחיקה</button>
-          </div>
-        `;
-        adminList.appendChild(row);
-      }
-
-      adminList.querySelectorAll("button[data-act]").forEach(b=>{
-        b.addEventListener("click", ()=>{
-          const act = b.getAttribute("data-act");
-          const sku = b.getAttribute("data-sku");
-          if(act==="edit") startEdit(sku);
-          if(act==="del") deleteProduct(sku);
-        });
-      });
-    }
-
-    function startEdit(sku){
-      const p = products.find(x=>x.sku===sku);
-      if(!p) return;
-      editingSku = sku;
-      pName.value = p.name || "";
-      pPrice.value = p.price ?? "";
-      pDesc.value = p.desc || "";
-      pImg.value = p.img || "";
-      pTag.value = p.tag || "";
-      pSku.value = p.sku || "";
-      setTab("add");
-      showEditHint(`מצב עריכה: ${p.name} (${p.sku})`);
-      toast("מצב עריכה", p.name);
-    }
-
-    function deleteProduct(sku){
-      const p = products.find(x=>x.sku===sku);
-      if(!p) return;
-      const ok = confirm(`למחוק את "${p.name}"?`);
-      if(!ok) return;
-
-      products = products.filter(x=>x.sku!==sku);
-      if(cart[sku]) delete cart[sku];
-
-      saveJSON(LS_KEYS.products, products);
-      saveJSON(LS_KEYS.cart, cart);
-
-      if(editingSku===sku) resetForm();
-
-      renderProducts();
-      renderCart();
-      renderAdminList();
-      toast("נמחק", p.name);
-    }
-
-    saveSettingsBtn.addEventListener("click", ()=>{
-      settings.mailtoTarget = (mailtoTarget.value || "").trim();
-      saveJSON(LS_KEYS.settings, settings);
-      toast("נשמר", "הגדרות עודכנו");
-    });
-
-    resetAllBtn.addEventListener("click", ()=>{
-      const ok = confirm("איפוס מלא? זה ימחק מוצרים/סל/הגדרות מקומיים.");
-      if(!ok) return;
-
-      products = [...DEFAULT_PRODUCTS];
-      cart = {};
-      settings = {...DEFAULT_SETTINGS};
-      adminAuthed = false;
-
-      saveJSON(LS_KEYS.products, products);
-      saveJSON(LS_KEYS.cart, cart);
-      saveJSON(LS_KEYS.settings, settings);
-      saveJSON(LS_KEYS.admin, false);
-
-      renderProducts();
-      renderCart();
-      renderAdminList();
-      mailtoTarget.value = "";
-      resetForm();
-      toast("בוצע איפוס", "חזרנו לברירת מחדל");
-      showAdminLogin();
-    });
-
-    /***********************
-     * Toast
-     ***********************/
-    function toast(title, subtitle=""){
-      const t = document.createElement("div");
-      t.className = "toast";
-      t.innerHTML = `<b style="font-weight:1000;">${escapeHTML(title)}</b>${subtitle ? `<small>${escapeHTML(subtitle)}</small>` : ""}`;
-      toastWrap.appendChild(t);
-
-      setTimeout(()=>{
-        t.style.opacity = "0";
-        t.style.transform = "translateY(8px)";
-      }, 2400);
-
-      setTimeout(()=> t.remove(), 2900);
-    }
-
-    /***********************
-     * Helpers (XSS-safe)
-     ***********************/
-    function escapeHTML(s){
-      return String(s ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-    function escapeAttr(s){
-      return escapeHTML(s).replaceAll("`","&#096;");
-    }
-
-    /***********************
-     * Init
-     ***********************/
-    function init(){
-      document.getElementById("year").textContent = new Date().getFullYear();
-      renderProducts();
-      renderCart();
-
-      // Keyboard shortcuts
-      document.addEventListener("keydown", (e)=>{
-        if(e.key === "Escape"){
-          closeCart();
-          closeAdmin();
-        }
-      });
-
-      // If already authed before, keep panel ready
-      if(adminAuthed){
-        // nothing: opens directly
-      }
-    }
-
-    init();
   </script>
 </body>
-</html> 
+</html>
