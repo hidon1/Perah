@@ -1,96 +1,13 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>המוצרים שלנו</title>
+
   <style>
     body {
-      font-family: Arial, sans-serif;<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>מוצרים</title>
-
-<style>
-body {
-  font-family: Arial;
-  background: #f5f5f5;
-  margin: 0;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 15px;
-}
-
-.price {
-  font-weight: bold;
-  font-size: 20px;
-}
-</style>
-
-</head>
-<body>
-
-<div class="container">
-  <h1>המוצרים שלנו</h1>
-  <div id="products" class="grid"></div>
-</div>
-
-<script>
-
-const API_URL = "https://script.google.com/macros/s/AKfycbx85Iwvm4DooRV-PBoojKjmVz702LnVGCy8AaV0wa9zdquERnWyJq5qE_pO4pemZSC1/exec";
-
-fetch(API_URL)
-.then(res => res.json())
-.then(data => {
-
-  const container = document.getElementById("products");
-
-  data.forEach(p => {
-    container.innerHTML += `
-      <div class="card">
-        <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400'">
-        <div class="card-content">
-          <h3>${p.name}</h3>
-          <p>${p.description}</p>
-          <div class="price">₪${p.price}</div>
-        </div>
-      </div>
-    `;
-  });
-
-});
-
-</script>
-
-</body>
-</html>
+      font-family: Arial, sans-serif;
       margin: 0;
       background: #f7f7f7;
       color: #222;
@@ -172,60 +89,43 @@ fetch(API_URL)
   </div>
 
   <script>
-    const API_URL = "YOUR_SCRIPT_URL";
+    const API_URL = "https://script.google.com/macros/s/AKfycbwyzgBAHaNzX8c7-qY5cYEqVurUG9uwrrcFBSlXcgnM5_ei5yMM5EeJ81hBNvJpNZM7/exec";
 
     async function loadProducts() {
       const container = document.getElementById("productsContainer");
 
       try {
         const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error("שגיאה בטעינת הנתונים");
-        }
-
         const data = await response.json();
 
-        if (!data.success || !Array.isArray(data.products)) {
-          throw new Error("מבנה נתונים לא תקין");
-        }
-
-        if (data.products.length === 0) {
+        if (!Array.isArray(data) || data.length === 0) {
           container.className = "empty";
-          container.innerHTML = "אין כרגע מוצרים להצגה.";
+          container.innerHTML = "אין כרגע מוצרים.";
           return;
         }
 
         container.className = "products-grid";
-        container.innerHTML = data.products.map(product => `
+        container.innerHTML = data.map(product => `
           <div class="product-card">
             <img
               class="product-image"
-              src="${escapeHtml(product.image_url || '')}"
-              alt="${escapeHtml(product.name || '')}"
+              src="${product.image_url || ''}"
+              alt="${product.name || ''}"
               onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"
             />
             <div class="product-content">
-              <h2 class="product-title">${escapeHtml(product.name || '')}</h2>
-              <div class="product-description">${escapeHtml(product.description || '')}</div>
-              <div class="product-price">₪${escapeHtml(String(product.price || '0'))}</div>
+              <h2 class="product-title">${product.name || ''}</h2>
+              <div class="product-description">${product.description || ''}</div>
+              <div class="product-price">₪${product.price || '0'}</div>
             </div>
           </div>
         `).join("");
 
       } catch (error) {
         container.className = "error";
-        container.innerHTML = "לא הצלחנו לטעון את המוצרים.";
+        container.innerHTML = "שגיאה בטעינת המוצרים.";
         console.error(error);
       }
-    }
-
-    function escapeHtml(text) {
-      return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
     }
 
     loadProducts();
