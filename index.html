@@ -1,246 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>הילה כלה • זרי כלה וזרי רוסין</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=David+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>המוצרים שלנו</title>
   <style>
-    :root{
-      --bg:#f9f6f1;
-      --paper:#fffefb;
-      --card:#ffffff;
-      --ink:#2f2432;
-      --muted:#7c6a84;
-      --brand:#8b5b94;
-      --brand-soft:#eddff0;
-      --gold:#b48a3b;
-      --stroke:1px solid rgba(115,90,130,.18);
-      --shadow:0 20px 45px rgba(80,40,95,.12);
-      --radius:22px;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+      color: #222;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:"Assistant",system-ui,sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(1200px 500px at 80% -10%, rgba(139,91,148,.2), transparent 65%),
-        radial-gradient(900px 500px at 0% 25%, rgba(180,138,59,.12), transparent 60%),
-        var(--bg);
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
-    .container{width:min(1180px,calc(100% - 36px));margin-inline:auto}
-    .topbar{
-      position:sticky;top:0;z-index:20;
-      backdrop-filter:blur(10px);
-      background:rgba(249,246,241,.88);
-      border-bottom:var(--stroke);
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
     }
-    .nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0;gap:10px;flex-wrap:wrap}
-    .brand{font-family:"David Libre",serif;font-size:26px;font-weight:700}
-    .links{display:flex;gap:10px;flex-wrap:wrap}
-    .links a{padding:10px 14px;border-radius:999px;background:#fff;border:var(--stroke);text-decoration:none;color:var(--ink);font-weight:700}
 
-    .hero{padding:32px 0}
-    .heroCard{
-      border-radius:30px;background:linear-gradient(150deg,#fff,#f6eff9);border:var(--stroke);box-shadow:var(--shadow);
-      padding:36px;position:relative;overflow:hidden;animation:rise .7s ease;
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
     }
-    .heroCard:before{content:"";position:absolute;inset:auto -10% -45% auto;width:380px;height:380px;border-radius:50%;background:rgba(139,91,148,.13)}
-    @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-    h1,h2,h3{font-family:"David Libre",serif;margin:0}
-    h1{font-size:clamp(30px,5vw,48px);line-height:1.15}
-    .hero p{max-width:70ch;color:var(--muted);line-height:1.8}
-    .pill{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-weight:800}
 
-    section{padding:22px 0}
-    .sectionHead{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-    .sectionHead p{margin:0;color:var(--muted)}
+    .product-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
 
-    .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-    @media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
-    @media (max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:520px){.grid{grid-template-columns:1fr}}
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
 
-    .card{background:var(--card);border:var(--stroke);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 20px rgba(80,40,95,.08);transition:.25s transform,.25s box-shadow}
-    .card:hover{transform:translateY(-4px);box-shadow:0 16px 26px rgba(80,40,95,.14)}
-    .imgWrap{height:165px;background:#f3edf5}
-    .imgWrap img{width:100%;height:100%;object-fit:cover}
-    .cardBody{padding:12px}
-    .namePrice{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
-    .price{color:var(--brand);font-weight:800}
-    .desc{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.6;min-height:44px}
+    .product-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: #eee;
+    }
 
-    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width:900px){.twoCol{grid-template-columns:1fr}}
-    .panel{border:var(--stroke);border-radius:var(--radius);background:var(--paper);padding:20px;box-shadow:0 8px 18px rgba(80,40,95,.06)}
-    .quotes{display:grid;gap:10px;margin-top:12px}
-    .quote{padding:12px;border-radius:16px;background:#fff;border:var(--stroke)}
-    .quote b{display:block;margin-top:6px;color:var(--brand)}
+    .product-content {
+      padding: 16px;
+    }
 
-    form{display:grid;gap:10px;margin-top:10px}
-    input,textarea{width:100%;padding:12px;border-radius:14px;border:var(--stroke);font-family:inherit;background:#fff}
-    textarea{min-height:120px;resize:vertical}
-    .btn{border:0;border-radius:14px;padding:12px 14px;background:linear-gradient(135deg,var(--brand),#a370ad);color:white;font-weight:800;cursor:pointer}
-    .hint{font-size:13px;color:var(--muted)}
+    .product-title {
+      font-size: 20px;
+      margin: 0 0 10px;
+    }
 
-    footer{margin-top:24px;padding:20px 0 32px;border-top:var(--stroke);background:#f7f1f8}
-    .footerGrid{display:grid;grid-template-columns:2fr 1fr;gap:14px}
-    @media (max-width:800px){.footerGrid{grid-template-columns:1fr}}
-    .addressList{margin:8px 0 0;padding-right:18px;color:var(--muted)}
+    .product-description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+      min-height: 44px;
+      margin-bottom: 12px;
+    }
+
+    .product-price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    .loading,
+    .error,
+    .empty {
+      text-align: center;
+      font-size: 18px;
+      padding: 40px 20px;
+    }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container nav">
-      <div class="brand">הילה כלה • זרי כלה ורוסין</div>
-      <div class="links">
-        <a href="#bride">זרי כלה</a>
-        <a href="#rusin">זרי רוסין</a>
-        <a href="#reviews">תגובות</a>
-        <a href="#contact">יצירת קשר</a>
-      </div>
-    </div>
+  <div class="wrap">
+    <h1>המוצרים שלנו</h1>
+    <div id="productsContainer" class="loading">טוען מוצרים...</div>
   </div>
 
-  <header class="hero container">
-    <div class="heroCard">
-      <span class="pill">שזירה מוקפדת באווירה חרדית קלאסית</span>
-      <h1>זרי כלה וזרי רוסין<br>בגימור יוקרתי ומכובד</h1>
-      <p>
-        כבר שנים שאנחנו שוזרים באהבה ובסבלנות זרים לרגעים הכי מרגשים. כל זר נבנה בקו אלגנטי,
-        עדין ומכובד, עם דגש על יופי נקי, התאמה מלאה למעמד ושירות אישי עם לב גדול.
-      </p>
-    </div>
-  </header>
-
-  <section id="bride" class="container">
-    <div class="sectionHead">
-      <h2>קטגוריה: זרי כלה (15 דגמים)</h2>
-      <p>טווח מחירים: 300₪–700₪ • בסדר עולה</p>
-    </div>
-    <div class="grid" id="brideGrid"></div>
-  </section>
-
-  <section id="rusin" class="container">
-    <div class="sectionHead">
-      <h2>קטגוריה: זרי רוסין (10 דגמים)</h2>
-      <p>טווח מחירים: 600₪–1200₪ • קפיצות של כ־50₪–100₪</p>
-    </div>
-    <div class="grid" id="rusinGrid"></div>
-  </section>
-
-  <section id="reviews" class="container twoCol">
-    <div class="panel">
-      <h3>מי אנחנו</h3>
-      <p>סטודיו לשזירה המתמחה בזרי כלה וזרי רוסין. אנו משלבים קו מסורתי עם טאץ' מודרני, ושומרים על מראה צנוע, עשיר ומכבד לכל אירוע.</p>
-      <p class="hint">התאמה אישית זמינה לפי סגנון לבוש, שעת האירוע וגוון הפרחים המועדף.</p>
-    </div>
-    <div class="panel">
-      <h3>תגובות של אנשים</h3>
-      <div class="quotes">
-        <div class="quote">"הזר היה מדויק, עדין ומכובד – קיבלתי המון מחמאות בערב הרוסין."<b>— שירה, בני ברק</b></div>
-        <div class="quote">"שירות מיוחד וסבלני, והשזירה ברמה גבוהה מאוד."<b>— אביטל, רחובות</b></div>
-        <div class="quote">"הזר לכלה נראה יוקרתי ונשמר מושלם לאורך כל הצילומים."<b>— משפחת כהן, ראשון לציון</b></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="container">
-    <div class="panel">
-      <h3>טופס יצירת קשר</h3>
-      <p class="hint">הטופס מוכן לחיבור ל-Google Apps Script. בהמשך תדביקו את כתובת הסקריפט בשדה המתאים בקוד.</p>
-      <form id="contactForm">
-        <input name="name" placeholder="שם מלא" required>
-        <input name="subject" placeholder="הכנס הודעה (נושא)">
-        <textarea name="message" placeholder="ההודעה שלך" required></textarea>
-        <button class="btn" type="submit">שלח הודעה</button>
-      </form>
-      <p id="formStatus" class="hint"></p>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container footerGrid">
-      <div>
-        <h3>כתובתנו</h3>
-        <ul class="addressList">
-          <li>ראשון לציון</li>
-          <li>בני ברק</li>
-          <li>רחובות</li>
-        </ul>
-      </div>
-      <div>
-        <h3>פרטי קשר</h3>
-        <p class="hint">טלפון: <a href="tel:0534101455">053-410-1455</a><br>מייל: <a href="mailto:33HILA33@gmail.com">33HILA33@gmail.com</a></p>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    const bridePrices = [300,330,360,390,420,450,480,510,540,570,600,630,660,680,700];
-    const rusinPrices = [600,650,700,750,800,900,1000,1050,1150,1200];
+    const API_URL = "YOUR_SCRIPT_URL";
 
-    const brideGrid = document.getElementById('brideGrid');
-    const rusinGrid = document.getElementById('rusinGrid');
-
-    function renderCards(target, category, prices, imgPrefix = '') {
-      prices.forEach((price, index) => {
-        const number = index + 1;
-        const imageName = imgPrefix ? `${imgPrefix}${number}.png` : `${number}.png`;
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="imgWrap">
-            <img src="${imageName}" alt="${category} ${number}" onerror="this.src='https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=900&q=80';">
-          </div>
-          <div class="cardBody">
-            <div class="namePrice">
-              <h3>${category} ${number}</h3>
-              <div class="price">${price}₪</div>
-            </div>
-            <p class="desc">שזירה מוקפדת, מראה עדין ומכובד, התאמה מושלמת לאירוע עם גימור עשיר ואלגנטי.</p>
-          </div>
-        `;
-        target.appendChild(card);
-      });
-    }
-
-    renderCards(brideGrid, 'זר כלה', bridePrices, 'כלה-');
-    renderCards(rusinGrid, 'זר רוסין', rusinPrices);
-
-    // Google Apps Script endpoint (להחלפה בקישור האמיתי שתקבלו)
-    const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
-
-    const form = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      data.toEmail = '33HILA33@gmail.com';
-
-      if (!GOOGLE_SCRIPT_URL.startsWith('http')) {
-        formStatus.textContent = 'הטופס מוכן, נשאר רק להדביק את קישור ה-Google Apps Script בקוד.';
-        return;
-      }
+    async function loadProducts() {
+      const container = document.getElementById("productsContainer");
 
       try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        formStatus.textContent = 'ההודעה נשלחה בהצלחה. נחזור אליכם בהקדם.';
-        form.reset();
-      } catch {
-        formStatus.textContent = 'אירעה שגיאה בשליחה. נסו שוב או צרו קשר בטלפון.';
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error("שגיאה בטעינת הנתונים");
+        }
+
+        const data = await response.json();
+
+        if (!data.success || !Array.isArray(data.products)) {
+          throw new Error("מבנה נתונים לא תקין");
+        }
+
+        if (data.products.length === 0) {
+          container.className = "empty";
+          container.innerHTML = "אין כרגע מוצרים להצגה.";
+          return;
+        }
+
+        container.className = "products-grid";
+        container.innerHTML = data.products.map(product => `
+          <div class="product-card">
+            <img
+              class="product-image"
+              src="${escapeHtml(product.image_url || '')}"
+              alt="${escapeHtml(product.name || '')}"
+              onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'"
+            />
+            <div class="product-content">
+              <h2 class="product-title">${escapeHtml(product.name || '')}</h2>
+              <div class="product-description">${escapeHtml(product.description || '')}</div>
+              <div class="product-price">₪${escapeHtml(String(product.price || '0'))}</div>
+            </div>
+          </div>
+        `).join("");
+
+      } catch (error) {
+        container.className = "error";
+        container.innerHTML = "לא הצלחנו לטעון את המוצרים.";
+        console.error(error);
       }
-    });
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    loadProducts();
   </script>
 </body>
 </html>
