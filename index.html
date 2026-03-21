@@ -6,7 +6,91 @@
   <title>המוצרים שלנו</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, sans-serif;<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מוצרים</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f5f5f5;
+  margin: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 20px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>המוצרים שלנו</h1>
+  <div id="products" class="grid"></div>
+</div>
+
+<script>
+
+const API_URL = "https://script.google.com/macros/s/AKfycbx85Iwvm4DooRV-PBoojKjmVz702LnVGCy8AaV0wa9zdquERnWyJq5qE_pO4pemZSC1/exec";
+
+fetch(API_URL)
+.then(res => res.json())
+.then(data => {
+
+  const container = document.getElementById("products");
+
+  data.forEach(p => {
+    container.innerHTML += `
+      <div class="card">
+        <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400'">
+        <div class="card-content">
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+          <div class="price">₪${p.price}</div>
+        </div>
+      </div>
+    `;
+  });
+
+});
+
+</script>
+
+</body>
+</html>
       margin: 0;
       background: #f7f7f7;
       color: #222;
